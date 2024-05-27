@@ -3,28 +3,33 @@ using UnityEngine;
 
 public class WorldGenerator : MonoBehaviour
 {
+    [Header("Terrain Settings")]
     public int sizeX;
     public int sizeZ;
+    public float terrainDetail;
+    public float terrainHeight;
 
-    public float terDetail;
-    public float terHeight;
-    public int seed;
-
+    [Header("Prefabs")]
     [SerializeField] private List<GameObject> _spawnBlocks;
     [SerializeField] private GameObject[] _blocks;
 
     private Transform _parentTransform;
+    private int _seed;
 
     private void Awake()
     {
-        seed = Random.Range(100000, 999999);
-
-        _parentTransform = GetComponent<Transform>();
+        InitializeSeed();
+        _parentTransform = transform;
     }
 
     private void Start()
     {
         GenerateTerrain();
+    }
+
+    private void InitializeSeed()
+    {
+        _seed = Random.Range(100000, 999999);
     }
 
     private void GenerateTerrain()
@@ -33,26 +38,34 @@ public class WorldGenerator : MonoBehaviour
         {
             for (int z = 0; z < sizeZ; z++)
             {
-                int maxY = (int)(Mathf.PerlinNoise((x / 2 + seed) / terDetail, (z / 2 + seed) / terDetail) * terHeight);
-
-                GameObject grass = Instantiate(_blocks[0], new Vector3(x, maxY, z), Quaternion.identity);
-                grass.transform.parent = _parentTransform;
+                int maxY = CalculateHeight(x, z);
+                GenerateBlock(x, maxY, z, _blocks[0]);
 
                 for (int y = 0; y < maxY; y++)
                 {
-                    int dirtLayer = Random.Range(1, 5);
-                    if (y >= maxY - dirtLayer)
-                    {
-                        GameObject dirt = Instantiate(_blocks[2], new Vector3(x, y, z), Quaternion.identity);
-                        dirt.transform.parent = _parentTransform;
-                    }
-                    else
-                    {
-                        GameObject stone = Instantiate(_blocks[1], new Vector3(x, y, z), Quaternion.identity);
-                        stone.transform.parent = _parentTransform;
-                    }
+                    GenerateSubsurfaceBlock(x, y, z, maxY);
                 }
             }
         }
+    }
+
+    private int CalculateHeight(int x, int z)
+    {
+        return (int)(Mathf.PerlinNoise((x / 2f + _seed) / terrainDetail, (z / 2f + _seed) / terrainDetail) * terrainHeight);
+    }
+
+    private void GenerateBlock(int x, int y, int z, GameObject blockPrefab)
+    {
+        GameObject block = Instantiate(blockPrefab, new Vector3(x, y, z), Quaternion.identity);
+        block.transform.parent = _parentTransform;
+        
+        _spawnBlocks.Add(block);
+    }
+
+    private void GenerateSubsurfaceBlock(int x, int y, int z, int maxY)
+    {
+        int dirtLayerThickness = Random.Range(1, 5);
+        GameObject blockPrefab = (y >= maxY - dirtLayerThickness) ? _blocks[2] : _blocks[1];
+        GenerateBlock(x, y, z, blockPrefab);
     }
 }

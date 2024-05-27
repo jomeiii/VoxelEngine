@@ -154,9 +154,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sizeX: 10
   sizeZ: 10
-  terDetail: 20
-  terHeight: 20
-  seed: 0
+  terrainDetail: 20
+  terrainHeight: 20
   _spawnBlocks: []
   _blocks:
   - {fileID: 7263732853201512022, guid: a6e1f9e7309ea11498cf548727742c4c, type: 3}

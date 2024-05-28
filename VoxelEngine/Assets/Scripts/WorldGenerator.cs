@@ -12,7 +12,8 @@ public class WorldGenerator : MonoBehaviour
     [Header("Prefabs")]
     [SerializeField] private List<GameObject> _spawnBlocks;
     [SerializeField] private GameObject[] _blocks;
-
+    [SerializeField] private GameObject _player;
+    
     private Transform _parentTransform;
     private int _seed;
 
@@ -41,6 +42,9 @@ public class WorldGenerator : MonoBehaviour
                 int maxY = CalculateHeight(x, z);
                 GenerateBlock(x, maxY, z, _blocks[0]);
 
+                if (sizeX / 2 == x && sizeZ / 2 == z)
+                    SpawnPlayer(x, maxY + _player.transform.localScale.y, z);
+                
                 for (int y = 0; y < maxY; y++)
                 {
                     GenerateSubsurfaceBlock(x, y, z, maxY);
@@ -67,5 +71,10 @@ public class WorldGenerator : MonoBehaviour
         int dirtLayerThickness = Random.Range(1, 5);
         GameObject blockPrefab = (y >= maxY - dirtLayerThickness) ? _blocks[2] : _blocks[1];
         GenerateBlock(x, y, z, blockPrefab);
+    }
+
+    private void SpawnPlayer(int x, float y, int z)
+    {
+        var player = Instantiate(_player, new Vector3(x, y, z), Quaternion.identity);
     }
 }

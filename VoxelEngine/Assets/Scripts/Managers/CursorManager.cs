@@ -22,6 +22,8 @@ namespace Managers
             Cursor.visible = false;
             Cursor.lockState = CursorLockMode.Locked;
             IsCursorEnabled = false;
+            
+            // (stepa) TODO: Переделать под отдельный класс для дебага
         }
 
         public static void CursorEnable()
@@ -29,6 +31,8 @@ namespace Managers
             Cursor.visible = true;
             Cursor.lockState = CursorLockMode.None;
             IsCursorEnabled = true;
+            
+            // (stepa) TODO: Переделать под отдельный класс для дебага
         }
 
         private void ToggleCursor()

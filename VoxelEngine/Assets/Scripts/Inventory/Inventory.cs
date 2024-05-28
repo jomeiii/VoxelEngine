@@ -50,15 +50,6 @@ namespace Inventory
                 slots[i].transform.parent = inventoryPanel.transform;
                 slots[i].GetComponent<RectTransform>().localScale = Vector3.one;
             }
-
-            AddItem(1);
-            AddItem(1);
-            AddItem(1);
-            AddItem(1);
-            AddItem(1);
-            AddItem(1);
-            AddItem(1);
-            AddItem(2);
         }
 
         private void Update()

@@ -43,6 +43,7 @@ namespace Managers
             Time.timeScale = 0f;
             IsPause = true;
 
+            // (stepa) TODO: Переделать под отдельный класс для дебага
             Debug.Log(
                 $"<color=green>[{nameof(PauseManager)}]</color> <color=yellow>{nameof(Pause)}()</color>: Game on pause.");
         }
@@ -52,6 +53,7 @@ namespace Managers
             Time.timeScale = 1f;
             IsPause = false;
 
+            // (stepa) TODO: Переделать под отдельный класс для дебага
             Debug.Log(
                 $"<color=green>[{nameof(PauseManager)}]</color> <color=yellow>{nameof(Continue)}()</color>:Game continue.");
         }

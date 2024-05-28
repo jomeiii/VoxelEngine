@@ -263,6 +263,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _characterMovement: {fileID: 228708172}
+  _camera: {fileID: 0}
+  _maxRange: 5
+  _rayDirection: 1
 --- !u!114 &228708172
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -991,6 +994,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sensitivity: 2
   maxYAngle: 80
+  isCameraLocked: 0
 --- !u!1 &964819020
 GameObject:
   m_ObjectHideFlags: 0
@@ -1201,6 +1205,7 @@ MonoBehaviour:
   inventoryButton: 101
   slots: []
   items: []
+  _maxAmount: 64
   _slotAmount: 9
   _storageAmount: 36
 --- !u!1 &1275672813

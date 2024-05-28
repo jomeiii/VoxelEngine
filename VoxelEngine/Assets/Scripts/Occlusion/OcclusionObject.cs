@@ -9,7 +9,12 @@ namespace Occlusion
 
         private void OnEnable()
         {
-            _myRend = GetComponent<Renderer>();
+            if (_myRend == null)
+            {
+                _myRend = GetComponent<Renderer>();
+                // (stepa) TODO: Переделать под отдельный класс для дебага
+            }
+
             displayTime = -1;
         }
 

@@ -1,7 +1,7 @@
 ﻿using Managers;
 using UnityEngine;
 
-public class BlockDestroyer : MonoBehaviour
+public class Block : MonoBehaviour
 {
     private Inventory.Inventory _inventory;
     public int id;
@@ -11,7 +11,7 @@ public class BlockDestroyer : MonoBehaviour
         _inventory = GameObject.FindGameObjectWithTag("InventoryManager").GetComponent<Inventory.Inventory>();
     }
 
-    private void OnMouseDown()
+    public void BreakBlock()
     {
         if (!CursorManager.IsCursorEnabled)
         {

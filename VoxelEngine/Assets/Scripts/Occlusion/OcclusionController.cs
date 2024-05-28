@@ -50,7 +50,7 @@ namespace Occlusion
 
                 if (Physics.Raycast(ray, out var hit, rayDistance))
                 {
-                    if (hit.transform.TryGetComponent<OcclusionObject>(out OcclusionObject occlusionObject))
+                    if (hit.transform.TryGetComponent(out OcclusionObject occlusionObject))
                     {
                         occlusionObject.HitOcclude(stayTime);
                     }

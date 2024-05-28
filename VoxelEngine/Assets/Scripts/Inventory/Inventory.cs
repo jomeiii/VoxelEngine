@@ -15,6 +15,8 @@ namespace Inventory
         public GameObject hotbarPanel;
         public GameObject inventoryPanel;
 
+        public KeyCode inventoryButton = KeyCode.E;
+
         public List<GameObject> slots = new();
         public List<Item> items = new();
 
@@ -55,6 +57,14 @@ namespace Inventory
             AddItem(1);
             AddItem(1);
             AddItem(2);
+        }
+
+        private void Update()
+        {
+            if (Input.GetKeyDown(inventoryButton))
+            {
+                ToggleInventory();
+            }
         }
 
         public void AddItem(int id)
@@ -102,6 +112,11 @@ namespace Inventory
                     return true;
             
             return false;
+        }
+
+        private void ToggleInventory()
+        {
+            inventoryPanel.SetActive(!inventoryPanel.activeSelf);
         }
     }
 }

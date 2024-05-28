@@ -278,7 +278,7 @@ MonoBehaviour:
   _characterController: {fileID: 228708173}
   _speed: 5
   _jumpHeight: 1
-  _gravity: -19.62
+  _gravity: -9.81
   _groundDistance: 1.1
   _groundMask:
     serializedVersion: 2
@@ -520,7 +520,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 50e11a868a5345c4f94186feade48456, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sizeX: 32
+  sizeX: 100
   sizeZ: 32
   terrainDetail: 20
   terrainHeight: 20
@@ -1153,6 +1153,7 @@ MonoBehaviour:
   item: {fileID: 2900364938595350686, guid: cf61eade7e0f0214f9fb816b6a4693ba, type: 3}
   hotbarPanel: {fileID: 964819020}
   inventoryPanel: {fileID: 275454414}
+  inventoryButton: 101
   slots: []
   items: []
   _slotAmount: 9

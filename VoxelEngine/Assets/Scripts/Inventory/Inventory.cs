@@ -121,10 +121,12 @@ namespace Inventory
             if (inventoryPanel.activeSelf)
             {
                 CursorManager.CursorEnable();
+                PauseManager.OnPauseEvent();
             }
             else
             {
                 CursorManager.CursorOff();
+                PauseManager.OnContinueEvent();
             }
         }
     }

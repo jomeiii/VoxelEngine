@@ -240,6 +240,7 @@ GameObject:
   - component: {fileID: 228708173}
   - component: {fileID: 228708172}
   - component: {fileID: 228708171}
+  - component: {fileID: 228708178}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -390,12 +391,29 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 4.72, y: 10.79, z: 3.67}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.75, y: 0.75, z: 0.75}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 963194228}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &228708178
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 228708170}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 007b45061ec9479ab817437196b8ce9f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rayAmount: 1500
+  rayDistance: 300
+  stayTime: 2
+  camera: {fileID: 963194227}
+  rPoints: []
 --- !u!1 &255281141
 GameObject:
   m_ObjectHideFlags: 0
@@ -500,8 +518,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 50e11a868a5345c4f94186feade48456, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sizeX: 10
-  sizeZ: 10
+  sizeX: 32
+  sizeZ: 32
   terrainDetail: 20
   terrainHeight: 20
   _spawnBlocks: []
@@ -591,6 +609,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1275672814}
+  - {fileID: 1256308133}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &663051857
@@ -869,6 +888,51 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sensitivity: 2
   maxYAngle: 80
+--- !u!1 &1256308132
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1256308133}
+  - component: {fileID: 1256308134}
+  m_Layer: 0
+  m_Name: InventoryManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1256308133
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1256308132}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 619642044}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1256308134
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1256308132}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 66cd383693d74cefb6af694f95c5f3ea, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  itemDatabase: []
 --- !u!1 &1275672813
 GameObject:
   m_ObjectHideFlags: 0

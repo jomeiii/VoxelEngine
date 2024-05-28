@@ -5,7 +5,7 @@ namespace Managers
     public class CursorManager : MonoBehaviour
     {
         public KeyCode toggleCursorButton = KeyCode.Tab;
-        private static bool _isCursorEnabled = true;
+        public static bool IsCursorEnabled = true;
 
         private void Start()
         {
@@ -21,19 +21,19 @@ namespace Managers
         {
             Cursor.visible = false;
             Cursor.lockState = CursorLockMode.Locked;
-            _isCursorEnabled = false;
+            IsCursorEnabled = false;
         }
 
         public static void CursorEnable()
         {
             Cursor.visible = true;
             Cursor.lockState = CursorLockMode.None;
-            _isCursorEnabled = true;
+            IsCursorEnabled = true;
         }
 
         private void ToggleCursor()
         {
-            if (_isCursorEnabled)
+            if (IsCursorEnabled)
                 CursorOff();
             else
                 CursorEnable();

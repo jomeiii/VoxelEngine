@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using Managers;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -117,6 +118,14 @@ namespace Inventory
         private void ToggleInventory()
         {
             inventoryPanel.SetActive(!inventoryPanel.activeSelf);
+            if (inventoryPanel.activeSelf)
+            {
+                CursorManager.CursorEnable();
+            }
+            else
+            {
+                CursorManager.CursorOff();
+            }
         }
     }
 }

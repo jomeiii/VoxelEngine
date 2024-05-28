@@ -46,15 +46,11 @@ namespace Occlusion
         {
             for (int i = 0; i < rayAmount; i++)
             {
-                Ray ray;
-                RaycastHit hit;
-                OcclusionObject occlusionObject;
-                
-                ray = camera.ViewportPointToRay(new Vector3(rPoints[i].x, rPoints[i].y, 0));
+                var ray = camera.ViewportPointToRay(new Vector3(rPoints[i].x, rPoints[i].y, 0));
 
-                if (Physics.Raycast(ray, out hit, rayDistance))
+                if (Physics.Raycast(ray, out var hit, rayDistance))
                 {
-                    if (occlusionObject = hit.transform.GetComponent<OcclusionObject>())
+                    if (hit.transform.TryGetComponent<OcclusionObject>(out OcclusionObject occlusionObject))
                     {
                         occlusionObject.HitOcclude(stayTime);
                     }

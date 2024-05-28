@@ -9,11 +9,33 @@ namespace Inventory
     {
         public List<Item> itemDatabase = new();
 
-        private void Start()
+        private void Awake()
         {
             LoadDatabase("Assets/Resources/ItemData.txt");
         }
 
+        public Item GetItemByID(int id)
+        {
+            for (int i = 0; i < itemDatabase.Count; i++)
+            {
+                if (itemDatabase[i].id == id)
+                {
+                    return itemDatabase[i];
+                }
+            }
+            
+            return itemDatabase[0];
+        }
+
+        private Item ParseItem(StreamReader sr, string firstLine)
+        {
+            int id = int.Parse(firstLine.Replace("id: ", ""));
+            string name = sr.ReadLine().Replace("name: ", "");
+            bool stackable = bool.Parse(sr.ReadLine().Replace("stackable: ", ""));
+            string slug = sr.ReadLine().Replace("slug: ", "");
+            return new Item(id, name, stackable, slug);
+        }
+        
         private void LoadDatabase(string path)
         {
             try
@@ -41,32 +63,6 @@ namespace Inventory
                 // (stepa) TODO: Переделать под отдельный класс для дебага 
                 Debug.LogError($"Failed to load item database: {ex.Message}");
             }
-        }
-
-        private Item ParseItem(StreamReader sr, string firstLine)
-        {
-            int id = int.Parse(firstLine.Replace("id: ", ""));
-            string name = sr.ReadLine().Replace("name: ", "");
-            bool stackable = bool.Parse(sr.ReadLine().Replace("stackable: ", ""));
-            string slug = sr.ReadLine().Replace("slug: ", "");
-            return new Item(id, name, stackable, slug);
-        }
-    }
-
-    [Serializable]
-    public struct Item
-    {
-        public int id;
-        public string name;
-        public bool stackable;
-        public string slug;
-
-        public Item(int id, string name, bool stackable, string slug)
-        {
-            this.id = id;
-            this.name = name;
-            this.stackable = stackable;
-            this.slug = slug;
         }
     }
 }

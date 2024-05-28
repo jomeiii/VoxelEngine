@@ -1,9 +1,13 @@
-﻿using UnityEngine;
+﻿using Managers;
+using UnityEngine;
 
 public class BlockDestroyer : MonoBehaviour
 {
     private void OnMouseDown()
     {
-        Destroy(this.gameObject);
+        if (!CursorManager.IsCursorEnabled)
+        {
+            Destroy(this.gameObject);
+        }
     }
 }

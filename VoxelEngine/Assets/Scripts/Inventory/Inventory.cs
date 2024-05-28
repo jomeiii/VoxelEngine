@@ -21,6 +21,7 @@ namespace Inventory
         public List<GameObject> slots = new();
         public List<Item> items = new();
 
+        [SerializeField] private int _maxAmount = 64;
         [SerializeField] private int _slotAmount = 9;
         [SerializeField] private int _storageAmount = 36;
 
@@ -77,9 +78,12 @@ namespace Inventory
                 {
                     if (items[i].id == id)
                     {
-                        ItemData data = slots[i].transform.GetChild(0).GetComponent<ItemData>();
-                        data.amount++;
-                        data.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = data.amount.ToString();
+                        if (slots[i].transform.GetChild(0).GetComponent<ItemData>().amount < _maxAmount)
+                        {
+                            ItemData data = slots[i].transform.GetChild(0).GetComponent<ItemData>();
+                            data.amount++;
+                            data.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = data.amount.ToString();
+                        }
                     }
                 }
             }
@@ -87,7 +91,7 @@ namespace Inventory
             {
                 for (int i = 0; i < items.Count; i++)
                 {
-                    if(items[i].id == -1)
+                    if (items[i].id == -1)
                     {
                         items[i] = itemToAdd;
                         GameObject itemObject = Instantiate(item);
@@ -97,6 +101,7 @@ namespace Inventory
                         itemData.currentSlot = i;
 
                         itemObject.transform.parent = slots[i].transform;
+                        itemObject.transform.localPosition = Vector3.zero;
                         itemObject.name = itemToAdd.name;
                         itemObject.transform.localScale = Vector3.one;
                         itemObject.GetComponent<Image>().sprite = itemToAdd.sprite;
@@ -110,8 +115,13 @@ namespace Inventory
         {
             for (int i = 0; i < items.Count; i++)
                 if (items[i].id == item.id)
-                    return true;
-            
+                {
+                    if (slots[i].transform.GetChild(0).GetComponent<ItemData>().amount < _maxAmount)
+                    {
+                        return true;
+                    }
+                }
+
             return false;
         }
 

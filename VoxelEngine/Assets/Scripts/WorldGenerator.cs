@@ -6,6 +6,7 @@ public class WorldGenerator : MonoBehaviour
     [Header("Terrain Settings")]
     public int sizeX;
     public int sizeZ;
+    public int heightLevel;
     public float terrainDetail;
     public float terrainHeight;
 
@@ -39,7 +40,7 @@ public class WorldGenerator : MonoBehaviour
         {
             for (int z = 0; z < sizeZ; z++)
             {
-                int maxY = CalculateHeight(x, z);
+                int maxY = CalculateHeight(x, z) + heightLevel;
                 GenerateBlock(x, maxY, z, _blocks[0]);
 
                 if (sizeX / 2 == x && sizeZ / 2 == z)

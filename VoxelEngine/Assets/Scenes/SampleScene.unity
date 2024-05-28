@@ -333,6 +333,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sizeX: 32
   sizeZ: 32
+  heightLevel: 10
   terrainDetail: 20
   terrainHeight: 20
   _spawnBlocks: []

@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 public class WorldGenerator : MonoBehaviour
 {
@@ -12,16 +13,16 @@ public class WorldGenerator : MonoBehaviour
 
     [Header("Prefabs")]
     [SerializeField] private List<GameObject> _spawnBlocks;
-    [SerializeField] private GameObject[] _blocks;
-    [SerializeField] private GameObject _player;
+    [SerializeField] private GameObject[] _blockPrefabs;
+    [SerializeField] private GameObject _playerPrefab;
     
-    private Transform _parentTransform;
+    public static Transform ParentTransform;
     private int _seed;
 
     private void Awake()
     {
         InitializeSeed();
-        _parentTransform = transform;
+        ParentTransform = transform;
     }
 
     private void Start()
@@ -41,10 +42,10 @@ public class WorldGenerator : MonoBehaviour
             for (int z = 0; z < sizeZ; z++)
             {
                 int maxY = CalculateHeight(x, z) + heightLevel;
-                GenerateBlock(x, maxY, z, _blocks[0]);
+                GenerateBlock(x, maxY, z, _blockPrefabs[0]);
 
                 if (sizeX / 2 == x && sizeZ / 2 == z)
-                    SpawnPlayer(x, maxY + _player.transform.localScale.y, z);
+                    SpawnPlayer(x, maxY + _playerPrefab.transform.localScale.y, z);
                 
                 for (int y = 0; y < maxY; y++)
                 {
@@ -62,7 +63,7 @@ public class WorldGenerator : MonoBehaviour
     private void GenerateBlock(int x, int y, int z, GameObject blockPrefab)
     {
         GameObject block = Instantiate(blockPrefab, new Vector3(x, y, z), Quaternion.identity);
-        block.transform.parent = _parentTransform;
+        block.transform.parent = ParentTransform;
         
         _spawnBlocks.Add(block);
     }
@@ -70,12 +71,12 @@ public class WorldGenerator : MonoBehaviour
     private void GenerateSubsurfaceBlock(int x, int y, int z, int maxY)
     {
         int dirtLayerThickness = Random.Range(1, 5);
-        GameObject blockPrefab = (y >= maxY - dirtLayerThickness) ? _blocks[2] : _blocks[1];
+        GameObject blockPrefab = (y >= maxY - dirtLayerThickness) ? _blockPrefabs[2] : _blockPrefabs[1];
         GenerateBlock(x, y, z, blockPrefab);
     }
 
     private void SpawnPlayer(int x, float y, int z)
     {
-        var player = Instantiate(_player, new Vector3(x, y, z), Quaternion.identity);
+        var player = Instantiate(_playerPrefab, new Vector3(x, y, z), Quaternion.identity);
     }
 }

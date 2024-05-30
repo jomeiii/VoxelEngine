@@ -23,7 +23,7 @@ namespace Inventory
                     return itemDatabase[i];
                 }
             }
-            
+
             return itemDatabase[0];
         }
 
@@ -32,10 +32,16 @@ namespace Inventory
             int id = int.Parse(firstLine.Replace("id: ", ""));
             string name = sr.ReadLine().Replace("name: ", "");
             bool stackable = bool.Parse(sr.ReadLine().Replace("stackable: ", ""));
+            bool placeable = bool.Parse(sr.ReadLine().Replace("placeable: ", ""));
             string slug = sr.ReadLine().Replace("slug: ", "");
-            return new Item(id, name, stackable, slug);
+            return new Item(
+                id: id,
+                name: name,
+                stackable: stackable,
+                placeable: placeable,
+                slug: slug);
         }
-        
+
         private void LoadDatabase(string path)
         {
             try

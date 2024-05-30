@@ -337,11 +337,11 @@ MonoBehaviour:
   terrainDetail: 20
   terrainHeight: 20
   _spawnBlocks: []
-  _blocks:
+  _blockPrefabs:
   - {fileID: 7263732853201512022, guid: a6e1f9e7309ea11498cf548727742c4c, type: 3}
-  - {fileID: 9122508070807802904, guid: 39a427898613e7d499099b5ebe850db8, type: 3}
   - {fileID: 9122508070807802904, guid: ac944f2bbf3f7664ea6a231c63edbbc8, type: 3}
-  _player: {fileID: 4844598635794837475, guid: 0e3f98b0878c2944ba0341547fdca707, type: 3}
+  - {fileID: 9122508070807802904, guid: 39a427898613e7d499099b5ebe850db8, type: 3}
+  _playerPrefab: {fileID: 4844598635794837475, guid: 0e3f98b0878c2944ba0341547fdca707, type: 3}
 --- !u!4 &266952325
 Transform:
   m_ObjectHideFlags: 0
@@ -351,7 +351,7 @@ Transform:
   m_GameObject: {fileID: 266952323}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 2.6690364, y: 2.060207, z: 3.5096757}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -900,6 +900,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   database: {fileID: 1256308134}
+  hoverIndex: 0
   slot: {fileID: 726098715844876917, guid: 7931e2961d04e7c4693768256a0f8586, type: 3}
   item: {fileID: 2900364938595350686, guid: cf61eade7e0f0214f9fb816b6a4693ba, type: 3}
   hotbarPanel: {fileID: 964819020}

@@ -124,6 +124,7 @@ GameObject:
   - component: {fileID: 8683405904629029691}
   - component: {fileID: 4823070708771371190}
   - component: {fileID: 8620447882696351457}
+  - component: {fileID: 6076985708869873927}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -280,9 +281,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _characterMovement: {fileID: 8683405904629029691}
-  _camera: {fileID: 0}
+  _inventory: {fileID: 0}
+  _camera: {fileID: 3181632526676318144}
+  _playerTransform: {fileID: 9165978217934304268}
   _maxRange: 5
-  _rayDirection: 1
+  _rayDuration: 1
 --- !u!114 &8620447882696351457
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -300,3 +303,18 @@ MonoBehaviour:
   stayTime: 2
   camera: {fileID: 3181632526676318144}
   rPoints: []
+--- !u!114 &6076985708869873927
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4844598635794837475}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 32ab69e84ecb4c5884353032fd385e29, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  itemIndex: 0
+  _inventory: {fileID: 0}
+  _character: {fileID: 4823070708771371190}

@@ -1,20 +1,24 @@
 id: -1
 name: Empty
 stackable: false
+placeable: false
 slug: empty
 ,
 id: 0
 name: Dirt
 stackable: true
+placeable: true
 slug: dirt
 ,
 id: 1
 name: Grass
 stackable: true
+placeable: true
 slug: grass
 ,
 id: 2
 name: Stone
 stackable: true
+placeable: true
 slug: stone
 ;

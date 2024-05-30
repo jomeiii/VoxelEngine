@@ -2,6 +2,7 @@
 using Managers;
 using TMPro;
 using UnityEngine;
+using UnityEngine.Serialization;
 using UnityEngine.UI;
 using Vector3 = UnityEngine.Vector3;
 
@@ -11,6 +12,7 @@ namespace Inventory
     {
         public ItemDatabase database;
 
+        public int hoverIndex;
         public GameObject slot;
         public GameObject item;
         public GameObject hotbarPanel;
@@ -24,6 +26,7 @@ namespace Inventory
         [SerializeField] private int _maxAmount = 64;
         [SerializeField] private int _slotAmount = 9;
         [SerializeField] private int _storageAmount = 36;
+
 
         private void Start()
         {
@@ -50,6 +53,11 @@ namespace Inventory
                 slots[i].transform.parent = inventoryPanel.transform;
                 slots[i].GetComponent<RectTransform>().localScale = Vector3.one;
             }
+
+            for (int i = 0; i < _maxAmount; i++)
+            {
+                AddItem(0);
+            }
         }
 
         private void Update()
@@ -57,6 +65,15 @@ namespace Inventory
             if (Input.GetKeyDown(inventoryButton))
             {
                 ToggleInventory();
+            }
+
+            for (int i = 0; i < _slotAmount; i++)
+            {
+                if (i == hoverIndex)
+                    slots[i].GetComponent<Image>().color = Color.white;
+                else
+                    slots[i].GetComponent<Image>().color = slot.GetComponent<Image>().color;
+
             }
         }
 
@@ -101,6 +118,27 @@ namespace Inventory
                 }
             }
         }
+
+        public void RemoveItem()
+        {
+            for (int i = 0; i < _slotAmount; i++)
+            {
+                if (i == hoverIndex && items[i].id != -1)
+                {
+                    ItemData data = slots[i].transform.GetChild(0).GetComponent<ItemData>();
+                    data.amount--;
+                    if (data.amount <= 0)
+                    {
+                        Destroy(slots[i].transform.GetChild(0).gameObject);
+                        items[i] = database.GetItemByID(-1);
+                    }
+
+                    data.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = data.amount.ToString();
+                    break;
+                }
+            }
+        }
+        
 
         private bool CheckInventory(Item item)
         {

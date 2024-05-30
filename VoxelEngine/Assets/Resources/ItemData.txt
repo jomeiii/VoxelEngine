@@ -21,4 +21,24 @@ name: Stone
 stackable: true
 placeable: true
 slug: stone
+,
+id: 3
+name: Wood
+stackable: true
+placeable: true
+slug: wood
+,
+id: 4
+name: Leaves
+stackable: true
+placeable: true
+slug: leaves
 ;
+
+# # # Example # # #
+id: 
+name: 
+stackable: 
+placeable: 
+slug: 
+,

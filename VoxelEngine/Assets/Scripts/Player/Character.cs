@@ -5,14 +5,14 @@ namespace Player
     [RequireComponent(typeof(CharacterMovement))]
     public class Character : MonoBehaviour
     {
-        [Header("Components")]
-        [SerializeField] private CharacterMovement _characterMovement;
+        [Header("Components")] [SerializeField]
+        private CharacterMovement _characterMovement;
+
         [SerializeField] private Inventory.Inventory _inventory;
         [SerializeField] private Camera _camera;
         [SerializeField] private Transform _playerTransform;
 
-        [Header("Settings")]
-        [SerializeField] private float _maxRange = 7f;
+        [Header("Settings")] [SerializeField] private float _maxRange = 7f;
         [SerializeField] private float _rayDuration = 1f;
         [SerializeField] private LayerMask _blockLayerMask;
 
@@ -61,7 +61,8 @@ namespace Player
 
             if (Physics.Raycast(ray, out RaycastHit hit, _maxRange))
             {
-                Debug.DrawRay(_camera.transform.position, _camera.transform.forward * _maxRange, Color.green, _rayDuration);
+                Debug.DrawRay(_camera.transform.position, _camera.transform.forward * _maxRange, Color.green,
+                    _rayDuration);
                 if (hit.transform.TryGetComponent(out Block block))
                 {
                     block.BreakBlock();
@@ -69,7 +70,8 @@ namespace Player
             }
             else
             {
-                Debug.DrawRay(_camera.transform.position, _camera.transform.forward * _maxRange, Color.red, _rayDuration);
+                Debug.DrawRay(_camera.transform.position, _camera.transform.forward * _maxRange, Color.red,
+                    _rayDuration);
             }
         }
 
@@ -88,11 +90,13 @@ namespace Player
                 Instantiate(_inventory.items[_inventory.hoverIndex].gameObject, spawnPosition, Quaternion.identity);
                 _inventory.RemoveItem();
 
-                Debug.DrawRay(_camera.transform.position, _camera.transform.forward * _maxRange, Color.green, _rayDuration);
+                Debug.DrawRay(_camera.transform.position, _camera.transform.forward * _maxRange, Color.green,
+                    _rayDuration);
             }
             else
             {
-                Debug.DrawRay(_camera.transform.position, _camera.transform.forward * _maxRange, Color.red, _rayDuration);
+                Debug.DrawRay(_camera.transform.position, _camera.transform.forward * _maxRange, Color.red,
+                    _rayDuration);
             }
         }
 
@@ -115,15 +119,16 @@ namespace Player
 
         private bool CheckBlockCollision(Vector3 blockPosition, Transform playerTransform)
         {
-            Collider[] hitColliders = Physics.OverlapBox(blockPosition, Vector3.one * 0.5f, Quaternion.identity, _blockLayerMask);
+            Collider[] hitColliders =
+                Physics.OverlapBox(blockPosition, Vector3.one * 0.5f, Quaternion.identity, _blockLayerMask);
             foreach (var hitCollider in hitColliders)
             {
-                Debug.Log(hitCollider.transform.position);
                 if (hitCollider.transform == playerTransform)
                 {
                     return true;
                 }
             }
+
             return false;
         }
     }

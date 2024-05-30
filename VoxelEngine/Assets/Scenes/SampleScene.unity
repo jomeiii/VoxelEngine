@@ -336,11 +336,14 @@ MonoBehaviour:
   heightLevel: 10
   terrainDetail: 20
   terrainHeight: 20
+  _treeCount: 10
   _spawnBlocks: []
   _blockPrefabs:
   - {fileID: 7263732853201512022, guid: a6e1f9e7309ea11498cf548727742c4c, type: 3}
   - {fileID: 9122508070807802904, guid: ac944f2bbf3f7664ea6a231c63edbbc8, type: 3}
   - {fileID: 9122508070807802904, guid: 39a427898613e7d499099b5ebe850db8, type: 3}
+  - {fileID: 9122508070807802904, guid: 681a51291f0d07046ae8831d97f26c2c, type: 3}
+  - {fileID: 9122508070807802904, guid: 304cc7f0a2f913b4e8bed033f553a51d, type: 3}
   _playerPrefab: {fileID: 4844598635794837475, guid: 0e3f98b0878c2944ba0341547fdca707, type: 3}
 --- !u!4 &266952325
 Transform:

@@ -301,7 +301,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 007b45061ec9479ab817437196b8ce9f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rayAmount: 1500
+  rayAmount: 2000
   rayDistance: 300
   stayTime: 2
   camera: {fileID: 3181632526676318144}

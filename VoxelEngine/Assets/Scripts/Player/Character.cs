@@ -1,5 +1,4 @@
 ﻿using UnityEngine;
-using UnityEngine.Serialization;
 
 namespace Player
 {
@@ -10,11 +9,12 @@ namespace Player
         [SerializeField] private CharacterMovement _characterMovement;
         [SerializeField] private Inventory.Inventory _inventory;
         [SerializeField] private Camera _camera;
-        [FormerlySerializedAs("_playerPosition")] [SerializeField] private Transform _playerTransform;
-        
+        [SerializeField] private Transform _playerTransform;
+
         [Header("Settings")]
         [SerializeField] private float _maxRange = 7f;
         [SerializeField] private float _rayDuration = 1f;
+        [SerializeField] private LayerMask _blockLayerMask;
 
         private void Awake()
         {
@@ -84,7 +84,7 @@ namespace Player
                 Vector3 spawnPosition = GetSpawnPosition(hit);
 
                 if (CheckBlockCollision(spawnPosition, _playerTransform)) return;
-                
+
                 Instantiate(_inventory.items[_inventory.hoverIndex].gameObject, spawnPosition, Quaternion.identity);
                 _inventory.RemoveItem();
 
@@ -98,23 +98,27 @@ namespace Player
 
         private Vector3 GetSpawnPosition(RaycastHit hit)
         {
-            Vector3 spawnPosition = hit.point;
-            Vector3 normal = hit.normal;
+            Vector3 spawnPosition = hit.point + hit.normal * 0.5f;
+            spawnPosition = new Vector3(
+                Mathf.Round(spawnPosition.x),
+                Mathf.Round(spawnPosition.y),
+                Mathf.Round(spawnPosition.z)
+            );
 
-            spawnPosition += normal * 0.5f;
-
-            spawnPosition.x = Mathf.Round(spawnPosition.x);
-            spawnPosition.y = Mathf.Round(spawnPosition.y);
-            spawnPosition.z = Mathf.Round(spawnPosition.z);
+            if (CheckBlockCollision(spawnPosition, _playerTransform))
+            {
+                spawnPosition += Vector3.up;
+            }
 
             return spawnPosition;
         }
 
         private bool CheckBlockCollision(Vector3 blockPosition, Transform playerTransform)
         {
-            Collider[] hitColliders = Physics.OverlapBox(blockPosition, Vector3.one * 0.5f, Quaternion.identity);
+            Collider[] hitColliders = Physics.OverlapBox(blockPosition, Vector3.one * 0.5f, Quaternion.identity, _blockLayerMask);
             foreach (var hitCollider in hitColliders)
             {
+                Debug.Log(hitCollider.transform.position);
                 if (hitCollider.transform == playerTransform)
                 {
                     return true;

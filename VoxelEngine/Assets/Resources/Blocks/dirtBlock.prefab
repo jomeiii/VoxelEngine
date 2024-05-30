@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 1240864396411884138}
   - component: {fileID: -6731476178872278409}
   - component: {fileID: -1336865941687156458}
-  m_Layer: 6
+  m_Layer: 7
   m_Name: dirtBlock
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -119,6 +119,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8092bad4ebd14aacb12e620f2589189c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _myRend: {fileID: 0}
+  displayTime: 0
 --- !u!114 &-1336865941687156458
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -131,3 +133,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 40b19a4542164c5e86fca7a96459874d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  id: 0

@@ -100,7 +100,7 @@ public class WorldGenerator : MonoBehaviour
 
         // Logs
         int height = Random.Range(4, 7);
-        for (int i = 0; i < height; i++)
+        for (int i = 1; i < height + 1; i++)
         {
             GameObject wood = Instantiate(_blockPrefabs[3], new Vector3(x, y + i, z), Quaternion.identity);
             wood.transform.parent = ParentTransform;
